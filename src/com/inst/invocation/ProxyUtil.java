@@ -35,7 +35,9 @@ public class ProxyUtil {
 		// 获取自定义注解中的前置及后置方法
 		Map<String, String> methodMap = reflect.getMap();
 		for (Map.Entry<String, String> map : methodMap.entrySet()) {
-			if (map.getValue().equals(proxyMethodValue)) {
+			String proxyMethodName = proxyMethodValue.substring(proxyMethodValue.lastIndexOf(".")+1);
+			String mapMethodName = map.getValue().substring(map.getValue().lastIndexOf(".")+1);
+			if (proxyMethodName.equals(mapMethodName)) {
 				String[] str = mapKeyDivision(map.getKey());
 				// 若为前置方法
 				if (str[2].equals("before")) {
@@ -69,7 +71,9 @@ public class ProxyUtil {
 		String methodStr = proxyEntity.getMethod().toString();
 		String proxyMethodValue = methodStr.substring(methodStr.lastIndexOf(" ") + 1, methodStr.indexOf("("));
 		for (Map.Entry<String, String> aMap : map.entrySet()) {
-			if (aMap.getValue().equals(proxyMethodValue)) {
+			String proxyMethodName = proxyMethodValue.substring(proxyMethodValue.lastIndexOf(".")+1);
+			String mapMethodName = aMap.getValue().substring(aMap.getValue().lastIndexOf(".")+1);
+			if (proxyMethodName.equals(mapMethodName)) {
 				String[] str = mapKeyDivision(aMap.getKey());
 				if (str[2].equals("after")) {
 					Class<?> clazz = Class.forName(str[1], false, Thread.currentThread().getContextClassLoader()); // 加载该类

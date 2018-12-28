@@ -43,7 +43,7 @@ public class SubjectAspect {
 	 */
 	@Before("com.inst.bussiness.RealSubject.sayHello()")
 	public void beforeSayHello() {
-		System.out.println("说hey开始前");
+		System.out.println("说hello开始前");
 	}
 
 	/**
@@ -56,6 +56,6 @@ public class SubjectAspect {
 	 */
 	@After("com.inst.bussiness.RealSubject.sayHello()")
 	public void afterSayHello() {
-		System.out.println("说hey结束后");
+		System.out.println("说hello结束后");
 	}
 }
